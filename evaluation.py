@@ -4,7 +4,7 @@ def prefixEval(prefixExpr):
     operandStack = Stack()
     tokenList = prefixExpr.split()
     tokenList.reverse()
-    operatorList = ['+', '-', '*', '/', '^', '**']
+    operatorList = ['+', '-', '*', '/', '^']
 
     for token in tokenList:
         if token not in operatorList:
@@ -23,7 +23,7 @@ def doMath(op, op1, op2):
         return op1 / op2
     elif op == "+":
         return op1 + op2
-    elif op == "^" or op == "**":
+    elif op == "^":
         return op1 ** op2
     else:
         return op1 - op2
