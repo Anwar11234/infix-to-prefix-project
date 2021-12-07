@@ -1,30 +1,29 @@
 from stack import Stack
        
-def evaluation(prefixexp):
-    prefixList = prefixexp.split()
-    s = Stack()
+def prefixEval(prefixExpr):
+    operandStack = Stack()
+    tokenList = prefixExpr.split()
+    tokenList.reverse()
+    operatorList = ['+', '-', '*', '/', '^', '**']
 
-    for i in range(len(prefixList) - 1 , -1 , -1):
-        if prefixList[i] in "+-*/^":
-            first = s.pop()
-            second = s.pop()
-            result = doMath(first , second , prefixList[i])
-            s.push(result)
+    for token in tokenList:
+        if token not in operatorList:
+            operandStack.push(float(token))
+        else:
+            operand1 = operandStack.pop()
+            operand2 = operandStack.pop()
+            result = doMath(token, operand1, operand2)
+            operandStack.push(float(result))
+    return operandStack.pop()
 
-        else:    
-            s.push(float(prefixList[i]))
-
-    return s.pop()        
-
-def doMath(op1 , op2 , operator):
-    
-    if operator == '*':
+def doMath(op, op1, op2):
+    if op == "*":
         return op1 * op2
-    elif operator == '/':
-        return op1 / op2               
-    elif operator == '-':
-        return op1 - op2               
-    elif operator == '+':
-        return op1 + op2    
-    elif operator == '^':
-        return op1 ** op2    
+    elif op == "/":
+        return op1 / op2
+    elif op == "+":
+        return op1 + op2
+    elif op == "^" or op == "**":
+        return op1 ** op2
+    else:
+        return op1 - op2

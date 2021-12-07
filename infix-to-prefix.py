@@ -6,9 +6,10 @@ def inToPre(infixexp):
     output = []
     stack = Stack()
     prec = {"^": 4 , "*": 3 , "/": 3 , "+": 2, "-":2 , ")": 1}
-
+    operatorList = ['+', '-', '*', '/', '^', '**' , "(" , ")"]
+    
     for token in infixList:
-        if token not in "^*/+-)(":
+        if token not in operatorList:
             output.append(token)
 
         elif token == ")":
