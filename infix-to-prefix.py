@@ -28,7 +28,7 @@ def inToPre(infixexp):
         elif stack.isEmpty() or prec[token] >= prec[stack.peek()]:
             stack.push(token)    
 
-        elif prec[token] < prec[stack.peek()]:
+        else:
             while not stack.isEmpty() and prec[token] < prec[stack.peek()]:
                 output.append(stack.pop())   
             stack.push(token)
@@ -38,4 +38,4 @@ def inToPre(infixexp):
 
     output.reverse()   
 
-    return " ".join(output) 
+    return " ".join(output)  
