@@ -7,7 +7,7 @@ def inToPre(infixexp):
     stack = Stack()
     prec = {"^": 4 , "*": 3 , "/": 3 , "+": 2, "-":2 , ")": 1}
     operatorList = ['+', '-', '*', '/', '^', '**' , "(" , ")"]
-    
+
     for token in infixList:
         if token not in operatorList:
             output.append(token)
@@ -24,10 +24,7 @@ def inToPre(infixexp):
         elif token == "^":
             while not stack.isEmpty() and prec[token] <= prec[stack.peek()]:
                 output.append(stack.pop())   
-            stack.push(token)
-
-        elif stack.isEmpty() or prec[token] >= prec[stack.peek()]:
-            stack.push(token)    
+            stack.push(token)   
 
         else:
             while not stack.isEmpty() and prec[token] < prec[stack.peek()]:
